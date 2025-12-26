@@ -1,0 +1,13 @@
+<h3>Latest Blog Posts</h3>
+
+<div class="flex">
+{% for b in posts %}
+    <div class="card">
+        <img src="{{ b.cover_image.url }}" width="180">
+        <h4>{{ b.title }}</h4>
+        <p>{{ b.category }}</p>
+    </div>
+{% empty %}
+    <p>No blog posts yet.</p>
+{% endfor %}
+</div>

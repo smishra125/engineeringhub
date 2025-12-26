@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Create Forum Post</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <input name="title" placeholder="Title"><br><br>
+  <textarea name="message" placeholder="Message"></textarea><br><br>
+  <button type="submit">Post</button>
+</form>
+{% endblock %}

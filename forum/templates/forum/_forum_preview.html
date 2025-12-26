@@ -1,0 +1,11 @@
+<h3>Community Forum</h3>
+
+{% for f in forum_posts %}
+    <div class="card">
+        <strong>{{ f.title }}</strong>
+        <p>{{ f.user.username }}</p>
+        <small>{{ f.created_at }}</small>
+    </div>
+{% empty %}
+    <p>No discussions yet.</p>
+{% endfor %}

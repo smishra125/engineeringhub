@@ -1,0 +1,9 @@
+<h3>Web-scraped Updates</h3>
+
+<ul>
+{% for s in scraped %}
+    <li><a href="{{ s.url }}" target="_blank">{{ s.headline }}</a></li>
+{% empty %}
+    <li>No updates available.</li>
+{% endfor %}
+</ul>

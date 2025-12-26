@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>All Engineering Products</h2>
+
+<div class="flex">
+{% for p in products %}
+  <div class="card">
+    <img src="{{ p.image.url }}" width="150">
+    <h4>{{ p.title }}</h4>
+    <p>₹{{ p.price }}</p>
+    <a href="{% url 'product_detail' p.id %}">View</a>
+  </div>
+{% endfor %}
+</div>
+
+<div style="margin-top:20px;">
+  {% if products.has_previous %}
+    <a href="?page={{ products.previous_page_number }}">Prev</a>
+  {% endif %}
+
+  Page {{ products.number }} of {{ products.paginator.num_pages }}
+
+  {% if products.has_next %}
+    <a href="?page={{ products.next_page_number }}">Next</a>
+  {% endif %}
+</div>
+{% endblock %}

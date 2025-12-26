@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+    {% include "marketplace/_products.html" %}
+</section>
+
+<section>
+    {% include "blog/_latest_posts.html" %}
+</section>
+
+<section>
+    {% include "scraper/_updates.html" %}
+</section>
+
+<section>
+    {% include "forum/_forum_preview.html" %}
+</section>
+
+<section>
+    {% include "chatbot/_chatbox.html" %}
+</section>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ product.title }}</h2>
+
+<img src="{{ product.image.url }}" width="250">
+
+<p>Price: ₹{{ product.price }}</p>
+<p>Rating: ⭐ {{ product.rating }}</p>
+
+<a href="{{ product.affiliate_link }}" target="_blank">
+  Buy on Affiliate Store
+</a>
+{% endblock %}

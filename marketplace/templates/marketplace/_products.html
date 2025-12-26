@@ -1,0 +1,14 @@
+<h3>Affiliate Marketplace</h3>
+
+<div style="display:flex; gap:20px;">
+{% for p in products %}
+  <div style="border:1px solid #ccc; padding:10px;">
+    <img src="{{ p.image.url }}" width="120">
+    <p><strong>{{ p.title }}</strong></p>
+    <p>₹{{ p.price }}</p>
+    <p>⭐ {{ p.rating }}</p>
+  </div>
+{% empty %}
+  <p>No products yet.</p>
+{% endfor %}
+</div>
