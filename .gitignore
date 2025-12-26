@@ -1,8 +1,36 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
 db.sqlite3
-.env
+
+# Local Database (Django default)
+db.sqlite3
+
+# Virtual Environment (if you create one later inside this folder)
 .venv/
 venv/
+env/
+ENV/
+
+# Media files (Images uploaded by users/you)
+# It is best practice NOT to track the media folder to keep repo size small
+media/**/*
+!media/**/.gitkeep
+
+# Static files (if you run collectstatic later)
+staticfiles/
+
+# Environment secrets
+.env
+
+# VS Code specific settings
+.vscode/
+
+# Logs
 *.log
-.pipenv
+
+# OS generated files
+.DS_Store
+Thumbs.db
