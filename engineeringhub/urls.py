@@ -18,13 +18,27 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from chatbot.api import ChatbotAPI
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # Web pages
     path('', include('core.urls')),
     path('marketplace/', include('marketplace.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('forum/', include('forum.urls')),
+    # path('chatbot/', include('chatbot.urls')),
+    # path('scraper/', include('scraper.urls')),
+    # path('blog/', include('blog.urls')),
+
+    # APIs
+    path('api/products/', include('marketplace.api_urls')),
+    path('api/blogs/', include('blog.api_urls')),
+    path('api/forum/', include('forum.api_urls')),
+    path('api/chatbot/', ChatbotAPI.as_view()),
+
 
 ]
 

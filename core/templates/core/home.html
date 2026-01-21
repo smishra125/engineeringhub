@@ -2,24 +2,15 @@
 
 {% block content %}
 
-<section>
-    {% include "marketplace/_products.html" %}
-</section>
+<div class="hero">
+    <h1 class="fw-bold">Engineering Hub Marketplace</h1>
+    <p class="mt-2">Tools, Blogs, Community & AI — built for engineers</p>
+</div>
 
-<section>
-    {% include "blog/_latest_posts.html" %}
-</section>
-
-<section>
-    {% include "scraper/_updates.html" %}
-</section>
-
-<section>
-    {% include "forum/_forum_preview.html" %}
-</section>
-
-<section>
-    {% include "chatbot/_chatbox.html" %}
-</section>
+{% include "marketplace/_products.html" %}
+{% include "blog/_latest_posts.html" %}
+{% include "scraper/_updates.html" %}
+{% include "forum/_forum_preview.html" %}
+{% include "chatbot/_chatbox.html" %}
 
 {% endblock %}
