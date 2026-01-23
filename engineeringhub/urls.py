@@ -18,7 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from accounts.api import LogoutAPI
+from rest_framework.routers import DefaultRouter
+from marketplace.api import ProductViewSet
+from blog.api import BlogViewSet
+from forum.api import ForumViewSet
 from chatbot.api import ChatbotAPI
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+
+router = DefaultRouter()
+router.register(r'products', ProductViewSet, basename='product')
+router.register(r'blogs', BlogViewSet, basename='blog')
+router.register(r'forum', ForumViewSet, basename='forum')
 
 
 urlpatterns = [
@@ -34,12 +50,12 @@ urlpatterns = [
     # path('blog/', include('blog.urls')),
 
     # APIs
-    path('api/products/', include('marketplace.api_urls')),
-    path('api/blogs/', include('blog.api_urls')),
-    path('api/forum/', include('forum.api_urls')),
+    path('api/', include(router.urls)),
     path('api/chatbot/', ChatbotAPI.as_view()),
 
-
+    path('api/auth/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/logout/', LogoutAPI.as_view(), name='jwt_logout'),
 ]
 
 if settings.DEBUG:
