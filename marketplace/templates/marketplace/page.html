@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Marketplace</h2>
+
+<div
+  hx-get="/marketplace/htmx/products/"
+  hx-trigger="load"
+  hx-target="#products">
+  Loading products…
+</div>
+
+<div id="products"></div>
+{% endblock %}

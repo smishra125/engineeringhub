@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import BlogPost
 
-# Create your views here.
+def page(request):
+    posts = BlogPost.objects.order_by('-created_at')
+    return render(request, 'blog/page.html', {'posts': posts})

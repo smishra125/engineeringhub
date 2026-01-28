@@ -7,8 +7,13 @@ def create_post(request):
     if request.method == "POST":
         ForumPost.objects.create(
             user=request.user,
-            title=request.POST['title'],
-            message=request.POST['message']
+            title=request.POST.get("title"),
+            message=request.POST.get("message")
         )
-        return redirect('/')
-    return render(request, "forum/create_post.html")
+        return redirect('forum_home')
+
+    return render(request, 'forum/create_post.html')
+
+def page(request):
+    posts = ForumPost.objects.order_by('-created_at')
+    return render(request, 'forum/page.html', {'posts': posts})
