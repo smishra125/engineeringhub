@@ -38,6 +38,106 @@
     {% endfor %}
   </div>
 
+  <hr style="margin:40px 0;">
+
+    <h2>My Blog Posts</h2>
+
+    {% if blog_posts %}
+    <div class="profile-blog-list">
+        {% for post in blog_posts %}
+        <div class="profile-card">
+            <h3>{{ post.title }}</h3>
+
+            <div class="profile-meta">
+            {{ post.created_at|date:"M d, Y" }} •
+            {{ post.created_at|time:"H:i" }}
+            </div>
+
+            <p style="color:#555;">
+            {{ post.content|truncatewords:25 }}
+            </p>
+
+            <a href="/blogs/" class="read-btn">View Blog →</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>You haven’t written any blogs yet.</p>
+    {% endif %}
+
+    <a href="/blogs/create/" class="create-btn">
+    ✍️ Create New Blog
+    </a>
+
+
 </div>
+
+{% endblock %}
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ===== TOP SECTION (2 COLUMNS) ===== -->
+<div style="display:grid; grid-template-columns: 1fr 2fr; gap:30px;">
+
+  <!-- PROFILE CARD -->
+  <div class="card">
+    <h3>My Profile</h3>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email|default:"Not provided" }}</p>
+
+    <a href="{% url 'create_post' %}" class="create-btn">
+      ➕ Create New Post
+    </a>
+  </div>
+
+  <!-- FORUM POSTS -->
+  <div>
+    <h3>Your Forum Posts</h3>
+
+    {% for post in my_posts %}
+      <div class="card" style="margin-bottom:15px;">
+        <h4>{{ post.title }}</h4>
+        <p>{{ post.message|truncatechars:150 }}</p>
+        <small>Posted on {{ post.created_at|date:"M d, Y" }}</small>
+      </div>
+    {% empty %}
+      <p>You haven’t created any posts yet.</p>
+    {% endfor %}
+  </div>
+
+</div>
+
+<hr style="margin:40px 0;">
+
+<!-- ===== BLOG SECTION (FULL WIDTH) ===== -->
+<h2>My Blog Posts</h2>
+
+{% if blog_posts %}
+  <div class="profile-blog-list">
+    {% for post in blog_posts %}
+      <div class="profile-card">
+        <h3>{{ post.title }}</h3>
+
+        <div class="profile-meta">
+          {{ post.created_at|date:"M d, Y" }} •
+          {{ post.created_at|time:"H:i" }}
+        </div>
+
+        <p style="color:#555;">
+          {{ post.content|truncatewords:25 }}
+        </p>
+
+        <a href="/blogs/" class="read-btn">View Blog →</a>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>You haven’t written any blogs yet.</p>
+{% endif %}
+
+<a href="/blogs/create/" class="create-btn">
+  ✍️ Create New Blog
+</a>
 
 {% endblock %}

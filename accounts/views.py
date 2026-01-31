@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from forum.models import ForumPost
+from blog.models import BlogPost
+
 
 def signup(request):
     if request.method == 'POST':
@@ -16,8 +18,10 @@ def signup(request):
 
 @login_required
 def profile(request):
-    my_posts = ForumPost.objects.filter(user=request.user).order_by('-created_at')
+    forum_posts = ForumPost.objects.filter(user=request.user).order_by("-created_at")
+    blog_posts = BlogPost.objects.filter(author=request.user).order_by("-created_at")
 
-    return render(request, 'accounts/profile.html', {
-        'my_posts': my_posts
+    return render(request, "accounts/profile.html", {
+        "forum_posts": forum_posts,
+        "blog_posts": blog_posts,
     })
