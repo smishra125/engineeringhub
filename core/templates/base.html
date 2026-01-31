@@ -17,7 +17,6 @@
           box-shadow:0 4px 12px rgba(0,0,0,0.1);
         }
 
-
         .container {
             width:90%;
             margin:auto;
@@ -30,6 +29,284 @@
             border:1px solid #ccc;
             box-sizing:border-box;
         }
+
+        /* Marketplace Grid */
+        .marketplace-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr); /* 🔥 FIXED 4 COLUMNS */
+          gap: 25px;
+          margin-top: 25px;
+        }
+
+
+        .marketplace-page {
+          max-width: 1200px;
+          margin: auto;
+        }
+
+
+
+        /* Product Card */
+        .product-card {
+          background: white;
+          border-radius: 14px;
+          box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+        }
+
+
+        .marketplace-wrapper {
+          max-width: 1200px;
+          margin: auto;
+        }
+
+        /* ===== BLOG GRID ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+          }
+
+
+          .blog-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            height: 140px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+          }
+
+        .blog-img {
+          width: 140px;
+          height: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #f5f7fa;
+        }
+
+        .blog-img img {
+            width: 90px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+          }
+
+        .blog-content {
+          padding: 16px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .blog-body {
+            flex: 1;
+            min-width: 0; /* 🔥 MOST IMPORTANT LINE */
+          }
+
+          .blog-body h3 {
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 4px 0 8px;
+          }
+
+          .blog-meta {
+              font-size: 12px;
+              color: #6b7280;
+              margin-bottom: 6px;
+            }
+
+          .blog-category {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+            display: block;
+          }
+
+        .read-btn {
+            font-weight: 500;
+            text-decoration: none;
+            color: #0b132b;
+          }
+
+        .view-all {
+          display: inline-block;
+          margin-top: 16px;
+          font-weight: 600;
+          text-decoration: none;
+          color: #0b132b;
+        }
+
+        .product-card:hover {
+          transform: translateY(-4px);
+        }
+
+        /* Badge */
+        .badge {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          background: #5b5bf7;
+          color: white;
+          padding: 4px 8px;
+          font-size: 12px;
+          border-radius: 12px;
+        }
+
+        /* Product Image */
+        .product-card img {
+          max-width: 100%;
+          height: 140px;
+          object-fit: contain;
+          margin-bottom: 10px;
+        }
+
+        /* Title */
+        .product-card h4 {
+          font-size: 14px;
+          font-weight: 600;
+          margin: 8px 0;
+          min-height: 40px;
+        }
+
+        /* Price */
+        .price {
+          font-size: 16px;
+          font-weight: bold;
+          margin: 5px 0;
+        }
+
+        /* Rating */
+        .rating {
+          color: #f5a623;
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+
+        /* Buy Button */
+        .buy-btn {
+          display: inline-block;
+          margin-top: 10px;
+          padding: 8px 14px;
+          background: #0b132b;
+          color: white;
+          border-radius: 20px;
+          text-decoration: none;
+          font-size: 14px;
+        }
+
+        .mp-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 260px); /* FIXED WIDTH */
+          gap: 24px;
+          justify-content: center;
+        }
+
+        .mp-card {
+          background: #fff;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          overflow: hidden;
+        }
+
+        .mp-img {
+          height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px;
+        }
+
+        .mp-img img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+
+        .mp-body {
+          padding: 14px;
+          text-align: center;
+        }
+
+        .mp-body h4 {
+          font-size: 14px;
+          font-weight: 600;
+          height: 38px;
+          overflow: hidden;
+        }
+
+        .price {
+          font-size: 16px;
+          font-weight: bold;
+        }
+
+        .rating {
+          color: #f5a623;
+          margin: 6px 0;
+        }
+
+        .buy-btn {
+          display: inline-block;
+          margin-top: 8px;
+          padding: 8px 14px;
+          background: #0b132b;
+          color: white;
+          border-radius: 20px;
+          text-decoration: none;
+        }
+
+
+        .buy-btn:hover {
+          background: #1c2541;
+        }
+
+        /* ===== FORUM GRID ===== */
+
+        .forum-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 340px);
+          gap: 24px;
+          justify-content: center;
+          margin-top: 20px;
+        }
+
+        .forum-card {
+          background: white;
+          border-radius: 14px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          padding: 16px;
+        }
+
+        .forum-body h4 {
+          font-size: 15px;
+          font-weight: 600;
+          margin-bottom: 6px;
+          white-space: nowrap;        /* 🔥 SINGLE LINE */
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .forum-excerpt {
+          font-size: 14px;
+          color: #555;
+          margin-bottom: 8px;
+          height: 40px;
+          overflow: hidden;
+        }
+
+
+
     </style>
 </head>
 

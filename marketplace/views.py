@@ -20,3 +20,7 @@ def product_detail(request, id):
     return render(request, "marketplace/product_detail.html", {
         "product": product
     })
+
+def page(request):
+    products = Product.objects.all()
+    return render(request, 'marketplace/page.html', {'products': products})

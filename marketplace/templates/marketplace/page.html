@@ -1,14 +1,32 @@
 {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-<h2>Marketplace</h2>
 
-<div
-  hx-get="/marketplace/htmx/products/"
-  hx-trigger="load"
-  hx-target="#products">
-  Loading products…
+<h2>Affiliate Marketplace</h2>
+
+<div class="mp-grid">
+
+  {% for product in products %}
+  <div class="mp-card">
+
+    <div class="mp-img">
+      <img src="{{ product.image.url }}">
+    </div>
+
+    <div class="mp-body">
+      <h4>{{ product.title }}</h4>
+      <p class="price">₹{{ product.price }}</p>
+      <div class="rating">⭐ {{ product.rating }}</div>
+      <a href="{{ product.affiliate_link }}" class="buy-btn">Buy Now</a>
+    </div>
+
+  </div>
+  {% endfor %}
+
 </div>
 
-<div id="products"></div>
+{% endblock %}
+
+
 {% endblock %}

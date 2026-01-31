@@ -4,16 +4,16 @@ from blog.models import BlogPost
 from scraper.models import ScrapedPost
 from forum.models import ForumPost
 
-
-
 def home(request):
-    context = {
-        "products": Product.objects.all()[:4],
-        "posts": BlogPost.objects.all()[:2],
-        "forum_posts": ForumPost.objects.all()[:4],
-        "scraped": ScrapedPost.objects.all()[:4],
-    }
-    return render(request, "core/home.html", context)
+    products = Product.objects.all()[:4]
+    posts = BlogPost.objects.order_by('-created_at')[:4]  # 🔥 change here
+    forum_posts = ForumPost.objects.order_by('-created_at')[:3]
+
+    return render(request, 'core/home.html', {
+        'products': products,
+        'posts': posts,
+        'forum_posts': forum_posts,
+    })
 
 # def home(request):
 #     return render(request, 'core/home.html')

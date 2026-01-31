@@ -1,14 +1,32 @@
-<h3>Affiliate Marketplace</h3>
+<h2>Affiliate Marketplace</h2>
 
-<div style="display:flex; gap:20px;">
-{% for p in products %}
-  <div style="border:1px solid #ccc; padding:10px;">
-    <img src="{{ p.image.url }}" width="120">
-    <p><strong>{{ p.title }}</strong></p>
-    <p>₹{{ p.price }}</p>
-    <p>⭐ {{ p.rating }}</p>
+<div class="mp-grid">
+
+  {% for product in products %}
+  <div class="mp-card">
+
+    <div class="mp-img">
+      <img src="{{ product.image.url }}" alt="{{ product.title }}">
+    </div>
+
+    <div class="mp-body">
+      <h4 title="{{ product.title }}">{{ product.title }}</h4>
+      <p class="price">₹{{ product.price }}</p>
+      <div class="rating">⭐ {{ product.rating }}</div>
+      <a href="{{ product.affiliate_link }}" class="buy-btn">Buy Now</a>
+    </div>
+
   </div>
-{% empty %}
-  <p>No products yet.</p>
-{% endfor %}
+  {% endfor %}
+
 </div>
+
+<a href="/marketplace/" style="
+  display:inline-block;
+  margin-top:15px;
+  font-weight:600;
+  text-decoration:none;
+  color:#0b132b;
+">
+  View all products →
+</a>

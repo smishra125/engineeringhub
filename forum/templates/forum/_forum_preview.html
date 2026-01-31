@@ -1,11 +1,27 @@
-<h3>Community Forum</h3>
+<h2>Community Forum</h2>
 
-{% for f in forum_posts %}
-    <div class="card">
-        <strong>{{ f.title }}</strong>
-        <p>{{ f.user.username }}</p>
-        <small>{{ f.created_at }}</small>
+<div class="forum-grid">
+
+  {% for post in forum_posts %}
+  <div class="forum-card">
+
+    <div class="forum-body">
+      <h4 title="{{ post.title }}">{{ post.title }}</h4>
+
+      <p class="forum-excerpt">
+        {{ post.message|truncatechars:90 }}
+      </p>
+
+      <small>
+        By {{ post.user.username }} · {{ post.created_at|date:"M d, Y" }}
+      </small>
     </div>
-{% empty %}
-    <p>No discussions yet.</p>
-{% endfor %}
+
+  </div>
+  {% endfor %}
+
+</div>
+
+<a href="/forum/" class="section-link">
+  View all discussions →
+</a>
