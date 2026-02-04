@@ -1,27 +1,94 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card" style="max-width:800px; margin:auto;">
 
-  <img src="{{ post.cover_image.url }}" style="
-      width:100%;
-      height:320px;
-      object-fit:cover;
-      border-radius:12px;
-      margin-bottom:20px;
-  ">
+<div class="card" style="max-width:900px; margin:auto; padding:30px;">
 
-  <h1>{{ post.title }}</h1>
+  <!-- COVER IMAGE -->
+  {% if post.cover_image %}
+    <img src="{{ post.cover_image.url }}" style="
+        width:100%;
+        height:360px;
+        object-fit:cover;
+        border-radius:14px;
+        margin-bottom:25px;
+    ">
+  {% endif %}
 
-  <div class="profile-meta" style="margin-bottom:20px;">
-    By {{ post.author.username }} •
+  <!-- TITLE -->
+  <h1 style="margin-bottom:10px;">{{ post.title }}</h1>
+
+  <!-- META -->
+  <div class="profile-meta" style="margin-bottom:20px; color:#666;">
+    By <strong>{{ post.author.username }}</strong> •
     {{ post.created_at|date:"M d, Y" }} •
     {{ post.created_at|time:"H:i" }}
   </div>
 
-  <div style="line-height:1.7; font-size:16px;">
-    {{ post.content|linebreaks }}
+  <!-- OWNER ACTIONS -->
+  {% if user == post.author %}
+    <div style="margin-bottom:20px;">
+      <a href="{% url 'blog_edit' post.id %}" class="create-btn" style="margin-right:10px;">
+        ✏️ Edit Blog
+      </a>
+
+      <form method="post" action="{% url 'blog_delete' post.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button class="danger-btn">
+          🗑 Delete
+        </button>
+      </form>
+    </div>
+  {% endif %}
+
+  <!-- CONTENT -->
+  <div style="
+      line-height:1.8;
+      font-size:17px;
+      color:#222;
+  ">
+    {{ post.content|safe }}
   </div>
 
 </div>
+
+<!-- COMMENTS SECTION -->
+<div style="max-width:900px; margin:40px auto;">
+
+  <h3 style="margin-bottom:15px;">💬 Comments</h3>
+
+  {% for comment in comments %}
+    <div class="card" style="margin-bottom:12px;">
+      <strong>{{ comment.user.username }}</strong>
+      <small style="color:#666;">
+        • {{ comment.created_at|date:"M d, Y H:i" }}
+      </small>
+      <p style="margin-top:8px;">{{ comment.text }}</p>
+    </div>
+  {% empty %}
+    <p style="color:#666;">No comments yet. Be the first one 👇</p>
+  {% endfor %}
+
+  <!-- ADD COMMENT -->
+  {% if user.is_authenticated %}
+    <div class="card" style="margin-top:20px;">
+      <h4>Add a comment</h4>
+
+      <form method="post">
+        {% csrf_token %}
+        {{ form.text }}
+
+        <button class="create-btn" style="margin-top:10px;">
+          💬 Post Comment
+        </button>
+      </form>
+    </div>
+  {% else %}
+    <p>
+      <a href="{% url 'login' %}">Login</a> to add a comment.
+    </p>
+  {% endif %}
+
+</div>
+
 {% endblock %}

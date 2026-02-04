@@ -41,12 +41,13 @@ INSTALLED_APPS = [
     'accounts',
     'core',
     'blog',
+    'marketplace',
     'scraper',
     'forum',
     'chatbot',
 ]
 
-INSTALLED_APPS += ['marketplace']
+INSTALLED_APPS += ['ckeditor']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
