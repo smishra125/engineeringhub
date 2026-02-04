@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card" style="max-width:800px; margin:auto;">
+
+  <img src="{{ post.cover_image.url }}" style="
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      border-radius:12px;
+      margin-bottom:20px;
+  ">
+
+  <h1>{{ post.title }}</h1>
+
+  <div class="profile-meta" style="margin-bottom:20px;">
+    By {{ post.author.username }} •
+    {{ post.created_at|date:"M d, Y" }} •
+    {{ post.created_at|time:"H:i" }}
+  </div>
+
+  <div style="line-height:1.7; font-size:16px;">
+    {{ post.content|linebreaks }}
+  </div>
+
+</div>
+{% endblock %}

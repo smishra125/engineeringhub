@@ -1,16 +1,58 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>All Blog Posts</h2>
 
-{% for post in posts %}
-  <div class="card">
-    <img src="{{ post.cover_image.url }}">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.content|truncatechars:150 }}</p>
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+  <h2>All Blog Posts</h2>
+
+  {% if user.is_authenticated %}
+    <div>
+      <a href="?mine=1" class="create-btn" style="margin-right:10px;">
+        ✍️ My Blogs
+      </a>
+      <a href="/blogs/create/" class="create-btn">
+        ➕ Create Blog
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% if posts %}
+  <div class="profile-blog-list">
+    {% for post in posts %}
+      <div class="profile-card">
+
+        <img src="{{ post.cover_image.url }}" alt="{{ post.title }}" style="
+          width:100%;
+          height:180px;
+          object-fit:cover;
+          border-radius:10px;
+          margin-bottom:10px;
+        ">
+
+        <h3 style="margin:6px 0;">
+          {{ post.title }}
+        </h3>
+
+        <div class="profile-meta">
+          By {{ post.author.username }} •
+          {{ post.created_at|date:"M d, Y" }} •
+          {{ post.created_at|time:"H:i" }}
+        </div>
+
+        <p style="color:#555; margin:10px 0;">
+          {{ post.content|truncatechars:180 }}
+        </p>
+
+        <a href="{% url 'blog_detail' post.id %}" class="read-btn">
+          Read Full Blog →
+        </a>
+
+      </div>
+    {% endfor %}
   </div>
-{% empty %}
+{% else %}
   <p>No blog posts yet.</p>
-{% endfor %}
+{% endif %}
 
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div style="max-width:720px; margin:auto;">
+
+  <h2>Create a New Blog</h2>
+  <p style="color:#6b7280; margin-bottom:20px;">
+    Share your knowledge with the Engineering Hub community.
+  </p>
+
+  <form method="post" enctype="multipart/form-data" class="card">
+    {% csrf_token %}
+
+    <label>Blog Title</label>
+    <input name="title" placeholder="Enter a compelling title" required>
+
+    <label>Category</label>
+    <input name="category" placeholder="e.g. Technology, AI, Career" required>
+
+    <label>Cover Image</label>
+    <input type="file" name="cover_image" required>
+
+    <label>Blog Content</label>
+    <textarea name="content" rows="8"
+      placeholder="Write your blog here..."
+      required></textarea>
+
+    <button type="submit" class="create-btn" style="margin-top:15px;">
+      🚀 Publish Blog
+    </button>
+  </form>
+
+</div>
+
+{% endblock %}
