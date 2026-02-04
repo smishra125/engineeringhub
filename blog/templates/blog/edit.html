@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card" style="
+    max-width:800px;
+    margin:auto;
+    padding:30px;
+">
+
+  <h2 style="margin-bottom:20px;">✏️ Edit Blog</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <!-- TITLE -->
+    <label><strong>Title</strong></label>
+    {{ form.title }}
+    <br><br>
+
+    <!-- COVER IMAGE -->
+    <label><strong>Cover Image</strong></label>
+    {{ form.cover_image }}
+    <br><br>
+
+    <!-- CONTENT -->
+    <label><strong>Content</strong></label>
+    {{ form.content }}
+    <br><br>
+
+    <!-- ACTIONS -->
+    <button class="create-btn">
+      💾 Update Blog
+    </button>
+
+    <a href="{% url 'blog_detail' form.instance.id %}" style="
+        margin-left:15px;
+        text-decoration:none;
+        color:#666;
+    ">
+      Cancel
+    </a>
+
+  </form>
+
+</div>
+
+{% endblock %}
