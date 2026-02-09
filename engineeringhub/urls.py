@@ -27,13 +27,15 @@ urlpatterns = [
     path('marketplace/', include('marketplace.urls')),
     path('forum/', include('forum.urls')),
     path('blogs/', include('blog.urls')),
+
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
     
     # Django built-in auth (login, logout, password reset, etc.)
     path('', include('django.contrib.auth.urls')),
 
     path('accounts/', include('accounts.urls')),
     
-    
+    # path('markdownx/', include('markdownx.urls')),
 
      path('login/', auth_views.LoginView.as_view(
         template_name='accounts/login.html'

@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import BlogPost
 from django.contrib.auth.models import User
 from .forms import BlogForm, CommentForm
+import markdown
+from django.utils.safestring import mark_safe
 
 
 @login_required
@@ -32,22 +34,18 @@ def blog_delete(request, pk):
 @login_required
 def create_blog(request):
     if request.method == "POST":
-        title = request.POST.get("title")
-        category = request.POST.get("category")
-        content = request.POST.get("content")
-        image = request.FILES.get("cover_image")
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = request.user
+            blog.save()
+            return redirect("blog_list")
+    else:
+        form = BlogForm()
 
-        BlogPost.objects.create(
-            title=title,
-            category=category,
-            content=content,
-            cover_image=image,
-            author=request.user
-        )
-
-        return redirect("blog_list")
-
-    return render(request, "blog/create_blog.html")
+    return render(request, "blog/create_blog.html", {
+        "form": form
+    })
 
 def blog_list(request):
     posts = BlogPost.objects.order_by("-created_at")
@@ -71,6 +69,12 @@ def page(request):
 
 def blog_detail(request, pk):
     post = get_object_or_404(BlogPost, pk=pk)
+    html_content = mark_safe(
+        markdown.markdown(
+            post.content,
+            extensions=["fenced_code", "tables"]
+        )
+    )
     comments = post.comments.order_by("-created_at")
 
     if request.method == "POST" and request.user.is_authenticated:

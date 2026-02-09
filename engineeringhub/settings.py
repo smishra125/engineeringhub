@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_ckeditor_5',
     'accounts',
     'core',
     'blog',
@@ -47,7 +48,7 @@ INSTALLED_APPS = [
     'chatbot',
 ]
 
-INSTALLED_APPS += ['ckeditor']
+# INSTALLED_APPS += ['markdownx']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,6 +129,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough',
+            'link', 'bulletedList', 'numberedList',
+            'blockQuote', 'codeBlock',
+            'insertTable', 'uploadImage',
+            'undo', 'redo',
+        ],
+        'image': {
+            'toolbar': [
+                'imageTextAlternative',
+                'imageStyle:full',
+                'imageStyle:side',
+            ]
+        },
+    }
+}
 
 
 MEDIA_URL = '/media/'

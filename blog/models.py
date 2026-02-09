@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 
     
 
@@ -8,7 +8,7 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=250)
     category = models.CharField(max_length=100)
     cover_image = models.ImageField(upload_to='blog/')
-    content = RichTextField()
+    content = CKEditor5Field('Content', config_name='default')
 
     author = models.ForeignKey(
     User,

@@ -30,7 +30,7 @@
           margin-bottom:10px;
         ">
 
-        <h3 style="margin:6px 0;">
+        <h3 class="blog-title" style="margin:6px 0;">
           {{ post.title }}
         </h3>
 
@@ -41,7 +41,8 @@
         </div>
 
         <p style="color:#555; margin:10px 0;">
-          {{ post.content|truncatechars:180 }}
+          {{ post.content|striptags|truncatechars:150 }}
+
         </p>
 
         <a href="{% url 'blog_detail' post.id %}" class="read-btn">
