@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="margin-bottom:20px;">Our Products</h2>
+
+<div style="
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap:24px;
+">
+
+{% for product in products %}
+<div class="card" style="overflow:hidden;">
+
+  <!-- PREVIEW IMAGE -->
+  <img src="{{ product.preview_image.url }}"
+       style="width:100%; height:200px; object-fit:contain; background:#f9fafb;">
+
+  <div style="padding:16px;">
+
+    <h4>{{ product.title }}</h4>
+
+    <p style="font-size:14px; color:#555;">
+      {{ product.short_description }}
+    </p>
+
+    <small style="color:#777;">
+      {{ product.get_product_type_display }}
+    </small>
+
+    <!-- ACTIONS -->
+    <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
+      <a href="{% url 'product_detail' product.id %}">
+        📄 View Details
+      </a>
+
+      {% if product.file %}
+        <a href="{{ product.file.url }}" class="create-btn" download>
+          ⬇ Download
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- LIKE -->
+    <div style="margin-top:10px;">
+      ❤️ {{ product.likes.count }} likes
+    </div>
+
+  </div>
+</div>
+{% empty %}
+<p>No products published yet.</p>
+{% endfor %}
+
+</div>
+{% endblock %}

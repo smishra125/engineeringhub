@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card" style="max-width:900px; margin:auto; padding:30px;">
+
+  <!-- IMAGE -->
+  <img src="{{ product.preview_image.url }}"
+       style="width:100%; max-height:360px; object-fit:contain; background:#f9fafb; border-radius:12px;">
+
+  <h1 style="margin-top:20px;">{{ product.title }}</h1>
+
+  <p style="color:#555; margin-top:10px;">
+    {{ product.description }}
+  </p>
+
+  <p style="margin-top:15px;">
+    <strong>Type:</strong> {{ product.get_product_type_display }}
+  </p>
+
+  <!-- DOWNLOAD -->
+  {% if product.file %}
+    <a href="{{ product.file.url }}" class="create-btn" download>
+      ⬇ Download
+    </a>
+  {% endif %}
+
+  <!-- LIKE BUTTON -->
+  {% if user.is_authenticated %}
+    <form method="post" action="{% url 'product_like' product.id %}">
+    {% csrf_token %}
+    <button class="create-btn" style="margin-top:10px;">
+        {% if is_liked %}
+        💔 Unlike
+        {% else %}
+        ❤️ Like
+        {% endif %}
+        ({{ product.likes.count }})
+    </button>
+    </form>
+  {% else %}
+<p><a href="{% url 'login' %}">Login</a> to like</p>
+{% endif %}
+
+
+
+</div>
+
+<!-- COMMENTS -->
+<div style="max-width:900px; margin:40px auto;">
+
+  <h3>💬 Comments</h3>
+
+  {% if user.is_authenticated %}
+    <form method="post" style="margin-bottom:20px;">
+      {% csrf_token %}
+      {{ comment_form.text }}
+      <button class="create-btn" style="margin-top:8px;">
+        💬 Post Comment
+      </button>
+    </form>
+  {% else %}
+    <p>
+      <a href="{% url 'login' %}">Login</a> to comment
+    </p>
+  {% endif %}
+
+  {% for comment in comments %}
+    <div class="card" style="margin-bottom:12px;">
+      <strong>{{ comment.user.username }}</strong>
+      <small style="color:#777;">
+        {{ comment.created_at|date:"M d, Y H:i" }}
+      </small>
+      <p>{{ comment.text }}</p>
+    </div>
+  {% empty %}
+    <p>No comments yet.</p>
+  {% endfor %}
+
+</div>
+
+
+{% endblock %}

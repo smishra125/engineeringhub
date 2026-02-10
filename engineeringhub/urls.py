@@ -27,6 +27,8 @@ urlpatterns = [
     path('marketplace/', include('marketplace.urls')),
     path('forum/', include('forum.urls')),
     path('blogs/', include('blog.urls')),
+    path('products/', include('our_products.urls')),
+
 
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     
@@ -35,8 +37,6 @@ urlpatterns = [
 
     path('accounts/', include('accounts.urls')),
     
-    # path('markdownx/', include('markdownx.urls')),
-
      path('login/', auth_views.LoginView.as_view(
         template_name='accounts/login.html'
     ), name='login'),

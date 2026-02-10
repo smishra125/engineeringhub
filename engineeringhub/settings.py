@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'core',
     'blog',
+    'products',
+    'our_products',
     'marketplace',
     'scraper',
     'forum',
