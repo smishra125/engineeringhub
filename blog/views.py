@@ -76,6 +76,11 @@ def blog_detail(request, pk):
         )
     )
     comments = post.comments.order_by("-created_at")
+    is_liked = False
+    is_disliked = False
+    if request.user.is_authenticated:
+        is_liked = post.likes.filter(id=request.user.id).exists()
+        is_disliked = post.dislikes.filter(id=request.user.id).exists()
 
     if request.method == "POST" and request.user.is_authenticated:
         form = CommentForm(request.POST)
@@ -91,5 +96,32 @@ def blog_detail(request, pk):
     return render(request, "blog/detail.html", {
         "post": post,
         "comments": comments,
-        "form": form
+        "form": form,
+        "is_liked": is_liked,
+        "is_disliked": is_disliked,
     })
+
+@login_required
+def blog_like(request, pk):
+    post = get_object_or_404(BlogPost, pk=pk)
+
+    if request.user in post.likes.all():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+        post.dislikes.remove(request.user)
+
+    return redirect("blog_detail", pk=pk)
+
+
+@login_required
+def blog_dislike(request, pk):
+    post = get_object_or_404(BlogPost, pk=pk)
+
+    if request.user in post.dislikes.all():
+        post.dislikes.remove(request.user)
+    else:
+        post.dislikes.add(request.user)
+        post.likes.remove(request.user)
+
+    return redirect("blog_detail", pk=pk)

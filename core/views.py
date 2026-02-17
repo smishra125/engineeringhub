@@ -15,6 +15,9 @@ def home(request):
         'forum_posts': forum_posts,
     })
 
+def about(request):
+    return render(request, "core/about.html")
+
 # def home(request):
 #     return render(request, 'core/home.html')
 

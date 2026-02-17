@@ -18,6 +18,17 @@ class BlogPost(models.Model):
     blank=True
 )
 
+    likes = models.ManyToManyField(
+    User,
+    related_name="liked_blogs",
+    blank=True
+    )
+
+    dislikes = models.ManyToManyField(
+    User,
+    related_name="disliked_blogs",
+    blank=True
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 

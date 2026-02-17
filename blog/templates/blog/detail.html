@@ -49,6 +49,41 @@
   ">
     {{ post.content|safe }}
   </div>
+    <!-- LIKE DISLIKE -->
+  <div style="margin-top:20px; display:flex; gap:10px;">
+
+    {% if user.is_authenticated %}
+
+      <form method="post" action="{% url 'blog_like' post.id %}">
+        {% csrf_token %}
+        <button class="create-btn">
+          {% if is_liked %}
+            💔 Unlike
+          {% else %}
+            ❤️ Like
+          {% endif %}
+          ({{ post.likes.count }})
+        </button>
+      </form>
+
+      <form method="post" action="{% url 'blog_dislike' post.id %}">
+        {% csrf_token %}
+        <button class="danger-btn">
+          {% if is_disliked %}
+            🔄 Remove Dislike
+          {% else %}
+            👎 Dislike
+          {% endif %}
+          ({{ post.dislikes.count }})
+        </button>
+      </form>
+
+    {% else %}
+      <p><a href="{% url 'login' %}">Login</a> to react</p>
+    {% endif %}
+
+  </div>
+
 
 </div>
 
@@ -81,8 +116,10 @@
         <button class="create-btn" style="margin-top:10px;">
           💬 Post Comment
         </button>
+        
       </form>
     </div>
+    
   {% else %}
     <p>
       <a href="{% url 'login' %}">Login</a> to add a comment.
