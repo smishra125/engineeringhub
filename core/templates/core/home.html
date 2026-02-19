@@ -3,14 +3,14 @@
 {% block content %}
 
 <section>
-    {% include "marketplace/_products.html" %}
-</section>
-
-<section>
     {% include "blog/_latest_posts.html" %}
 </section>
 
 <section>
+    {% include "marketplace/_products.html" %}
+</section>
+
+<!-- <section>
     {% include "forum/_forum_preview.html" %}
 </section>
 
@@ -20,6 +20,10 @@
 
 <section>
     {% include "chatbot/_chatbox.html" %}
+</section> -->
+
+<section>
+    {% include "core/_about_section.html" %}
 </section>
 
 {% endblock %}

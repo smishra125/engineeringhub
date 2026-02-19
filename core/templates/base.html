@@ -206,12 +206,12 @@
           font-size: 14px;
         }
 
-        .mp-grid {
+        /* .mp-grid {
           display: grid;
           grid-template-columns: repeat(4, 260px); /* FIXED WIDTH */
-          gap: 24px;
+          /* gap: 24px;
           justify-content: center;
-        }
+        } */ */
 
         .mp-card {
           background: #fff;
@@ -378,7 +378,133 @@
         overflow: hidden;
       }
 
+      .blog-slider-wrapper {
+          position: relative;
+          display: flex;
+          align-items: center;
+      }
 
+      .blog-slider {
+          display: flex;
+          gap: 20px;
+          overflow-x: hidden;
+          scroll-behavior: smooth;
+      }
+
+      .blog-card {
+          min-width: 320px;
+          flex-shrink: 0;
+      }
+
+      .slider-btn {
+          background: #0b132b;
+          color: white;
+          border: none;
+          font-size: 22px;
+          padding: 10px 14px;
+          cursor: pointer;
+          border-radius: 8px;
+          position: absolute;
+          z-index: 10;
+      }
+
+      .slider-btn.left {
+          left: -10px;
+      }
+
+      .slider-btn.right {
+          right: -10px;
+      }
+
+      /* MARKET SLIDER FIXED VERSION */
+
+      .market-section {
+          position: relative;
+          margin-top: 20px;
+      }
+
+      .market-container {
+          display: flex;
+          gap: 20px;
+          overflow-x: auto;
+          scroll-behavior: smooth;
+          padding: 10px 60px;
+          width: 100%;
+      }
+
+
+      /* Hide scrollbar */
+      .market-container::-webkit-scrollbar {
+          display: none;
+      }
+
+      .market-card {
+          min-width: 300px;
+          flex: 0 0 300px;   /* 🚀 forces fixed width */
+      }
+
+      .market-card img {
+          width: 100%;
+          height: 200px;
+          object-fit: contain;
+          margin-bottom: 10px;
+      }
+
+      .market-arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background: #0b132b;
+          color: white;
+          border: none;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          cursor: pointer;
+          z-index: 10;
+      }
+
+      .market-arrow.left {
+          left: 0;
+      }
+
+      .market-arrow.right {
+          right: 0;
+      }
+
+      .market-arrow:hover {
+          background: #1c2541;
+      }
+
+      .product-card {
+          min-width: 260px;
+          flex-shrink: 0;
+      }
+
+      /* Reuse same arrow button */
+      .slider-btn {
+          background: #0b132b;
+          color: white;
+          border: none;
+          width: 45px;
+          height: 45px;
+          font-size: 20px;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: 0.3s;
+      }
+
+      .slider-btn:hover {
+          background: #1c2541;
+      }
+
+      .view-all-link {
+          display:inline-block;
+          margin-top:15px;
+          font-weight:600;
+          text-decoration:none;
+          color:#0b132b;
+      }
 
     </style>
 </head>
@@ -408,9 +534,13 @@
         <a href="{% url 'home' %}" style="color:#a9bcd0;">Home</a>  •
         <a href="/marketplace/" style="color:#a9bcd0;">Marketplace</a>  •
         <a href="/blogs/" style="color:#a9bcd0;">Blogs</a>  •
-        <a href="/forum/" style="color:#a9bcd0;">Community</a>  • 
         <a href="/products/" style="color:#a9bcd0;">Our Products</a>  •
-        <a href="{% url 'home' %}#ai" style="color:#a9bcd0;">AI</a>  •
+        <a href="/videos/" style="color:#a9bcd0;">Videos</a>  •
+        
+        {% if ENABLE_FORUM %}
+          <a href="/forum/" style="color:#a9bcd0;">Community</a>  • 
+          <a href="{% url 'home' %}#ai" style="color:#a9bcd0;">AI</a>  •
+        {% endif %}
         <a href="/about/" style="color:#a9bcd0;">About</a>
       </small>
     </div>
@@ -488,6 +618,19 @@
 <div class="container" style="margin-top:90px;">
     {% block content %}{% endblock %}
 </div>
+
+{% include "core/_footer.html" %}
+
+  <script>
+  function scrollMarket(direction) {
+      const container = document.getElementById("marketSlider");
+      const cardWidth = 300;
+      container.scrollBy({
+          left: direction * cardWidth,
+          behavior: "smooth"
+      });
+  }
+  </script>
 
 
 

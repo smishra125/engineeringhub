@@ -1,0 +1,83 @@
+<footer style="
+    margin-top:60px;
+    background:#0f172a;
+    color:#e5e7eb;
+    padding:50px 0;
+">
+
+<div style="
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
+">
+
+    <div style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap:40px;
+    ">
+
+        <!-- About -->
+        <div>
+            <h3 style="margin-bottom:15px;">Engineering Hub</h3>
+            <p style="color:#cbd5e1;">
+                A platform for developers, innovators, and tech learners.
+                We share practical blogs, tools, and resources.
+            </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h4 style="margin-bottom:15px;">Quick Links</h4>
+            <p><a href="/" style="color:#cbd5e1;">Home</a></p>
+            <p><a href="/blogs/" style="color:#cbd5e1;">Blogs</a></p>
+            <p><a href="/products/" style="color:#cbd5e1;">Our Products</a></p>
+            <p><a href="/about/" style="color:#cbd5e1;">About</a></p>
+        </div>
+
+        <!-- Connect -->
+        <div>
+            <h4 style="margin-bottom:15px;">Connect With Us</h4>
+            <p>📧 contact@engineeringhub.com</p>
+            <p><a href="https://github.com/YOUR_GITHUB" target="_blank" style="color:#cbd5e1;">GitHub</a></p>
+            <p><a href="https://youtube.com/YOUR_CHANNEL" target="_blank" style="color:#cbd5e1;">YouTube</a></p>
+            <p><a href="https://instagram.com/YOUR_PAGE" target="_blank" style="color:#cbd5e1;">Instagram</a></p>
+        </div>
+
+        <!-- Newsletter -->
+        <div>
+            <h4 style="margin-bottom:15px;">Subscribe Newsletter</h4>
+            <form method="post" action="#">
+                <input type="email"
+                       placeholder="Enter your email"
+                       style="
+                           width:100%;
+                           padding:10px;
+                           border-radius:6px;
+                           border:none;
+                           margin-bottom:10px;
+                       ">
+                <button style="
+                    width:100%;
+                    padding:10px;
+                    background:#2563eb;
+                    color:white;
+                    border:none;
+                    border-radius:6px;
+                    cursor:pointer;
+                ">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <hr style="margin:40px 0; border:none; border-top:1px solid #334155;">
+
+    <div style="text-align:center; color:#94a3b8;">
+        © {{ now|date:"Y" }} Engineering Hub. All rights reserved.
+    </div>
+
+</div>
+</footer>

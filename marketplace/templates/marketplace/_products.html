@@ -1,32 +1,35 @@
 <h2>Affiliate Marketplace</h2>
 
-<div class="mp-grid">
+<div class="market-section">
 
-  {% for product in products %}
-  <div class="mp-card">
+    <button class="market-arrow left" onclick="scrollMarket(-1)">
+        ←
+    </button>
 
-    <div class="mp-img">
-      <img src="{{ product.image.url }}" alt="{{ product.title }}">
+    <div class="market-container" id="marketSlider">
+        {% for product in products %}
+        <div class="market-card">
+
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+
+            <h4>{{ product.title }}</h4>
+            <p class="price">₹{{ product.price }}</p>
+            <div class="rating">⭐ {{ product.rating }}</div>
+
+            <a href="{{ product.affiliate_link }}" target="_blank" class="buy-btn">
+                Buy Now
+            </a>
+
+        </div>
+        {% endfor %}
     </div>
 
-    <div class="mp-body">
-      <h4 title="{{ product.title }}">{{ product.title }}</h4>
-      <p class="price">₹{{ product.price }}</p>
-      <div class="rating">⭐ {{ product.rating }}</div>
-      <a href="{{ product.affiliate_link }}" class="buy-btn">Buy Now</a>
-    </div>
-
-  </div>
-  {% endfor %}
+    <button class="market-arrow right" onclick="scrollMarket(1)">
+        →
+    </button>
 
 </div>
 
-<a href="/marketplace/" style="
-  display:inline-block;
-  margin-top:15px;
-  font-weight:600;
-  text-decoration:none;
-  color:#0b132b;
-">
-  View all products →
+<a href="/marketplace/" class="view-all-link">
+    View all products →
 </a>

@@ -1,0 +1,11 @@
+<div class="row g-3">
+  {% for p in products %}
+  <div class="col-md-3">
+    <div class="card p-3">
+      <img src="{{ p.image.url }}" class="img-fluid mb-2">
+      <h6>{{ p.title }}</h6>
+      <p>₹{{ p.price }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
